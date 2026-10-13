@@ -17,6 +17,10 @@ The example uses a newly authored BMI formula, fictional inputs, and scripted mo
 
 An optional editable install is available with `python -m pip install -e .`. Dense retrieval additionally needs the packages in `requirements-retrieval.txt` and the two MedCPT checkpoints listed in `configs/retrieval.json`; weights are not included or automatically downloaded.
 
+## Illustrative cases
+
+[Three short fictional cases](examples/README.md) and their [structured JSON](examples/samples.json) illustrate selection among similar renal calculators: CALL, ASK → CALL, and ASK → ABSTAIN. They were newly authored without patient records or MIMIC-derived content. Initial inputs, controlled replies, and authored references are separated. These reading examples use four candidate cards; they are not benchmark samples or inputs for the packaged runner, whose ten-candidate protocol is unchanged.
+
 ## Methods and protocol
 
 - Tool methods receive ten initial candidates from BM25 + MedCPT reciprocal rank fusion. Candidates remain fixed after clarification.
@@ -30,12 +34,12 @@ The bundled `Scorer` and example use the Clinical evaluation branch. `precision_
 
 ## Release scope
 
-This is a **core code release**, with a synthetic software test. The paper evaluates 130 calculators, 220 MTF-Calc tasks, and 596 MTF-Clinical tasks. Those assets, benchmark reference answers, saved model outputs, result logs, development tools, and experiment history are not distributed here. Reproducing the paper's tables requires the corresponding calculator/task resources and model access; the synthetic example does not reproduce those results.
+This is a **core code release**, with a synthetic software test and three fictional reading examples. The paper evaluates 130 calculators, 220 MTF-Calc tasks, and 596 MTF-Clinical tasks. Those assets, benchmark reference answers, saved model outputs, result logs, development tools, and experiment history are not distributed here. Reproducing the paper's tables requires the corresponding calculator/task resources and model access; the included examples do not reproduce those results.
 
 Calculator redistribution permissions are being reviewed separately. MIMIC-derived resources must follow the [PhysioNet source terms and sharing guidance](https://physionet.org/content/mimiciv/3.1/). The reviewed MTF-Clinical data include manual curation; this package does not promise one-command reconstruction. Full dataset access arrangements are not provided by this code package.
 
 ## Attribution and use
 
-See [third-party notices and license status](NOTICE.md). No open-source license has yet been assigned to this local candidate. Choosing public hosting does not itself choose a license.
+See [third-party notices and license status](NOTICE.md). No open-source license has yet been assigned to this source release. Choosing public hosting does not itself choose a license.
 
 ChatGPT/Codex assisted with code implementation, debugging, and package preparation. This research software is not validated for patient-care decisions.

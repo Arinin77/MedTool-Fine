@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "purpose": "Three illustrative reading examples; not paper benchmark reproduction or runner/Scorer input.",
+  "provenance": {
+    "type": "newly_authored_fictional",
+    "contains_patient_records": false,
+    "derived_from_mimic": false,
+    "drawn_from_paper_benchmarks": false,
+    "reference_paths_are_model_runs": false
+  },
+  "candidate_scope": {
+    "illustrative_candidate_count": 4,
+    "paper_protocol_candidate_count": 10,
+    "candidate_set_changes_after_ask": false,
+    "note": "Four concise cards for reading, not executable calculator resources. Selection is relative to this reduced set."
+  },
+  "tool_catalog": {
+    "cockcroft_gault": {
+      "name": "Cockcroft-Gault estimated creatinine clearance",
+      "population": "Adults; this example assumes stable kidney function and non-extreme body habitus.",
+      "quantity": "Estimated creatinine clearance, not indexed to body surface area",
+      "unit": "mL/min",
+      "required_inputs": ["age_years", "sex_for_equation", "weight_kg", "serum_creatinine_mg_dl"],
+      "source_urls": ["https://doi.org/10.1159/000180580"]
+    },
+    "ckd_epi_2021": {
+      "name": "2021 CKD-EPI creatinine eGFR",
+      "population": "Adults aged 18 years or older",
+      "quantity": "Estimated GFR indexed to 1.73 square meters",
+      "unit": "mL/min/1.73 m^2",
+      "required_inputs": ["age_years", "sex_for_equation", "serum_creatinine_mg_dl"],
+      "source_urls": ["https://www.niddk.nih.gov/research-funding/research-programs/kidney-clinical-research-epidemiology/laboratory/glomerular-filtration-rate-equations/adults"]
+    },
+    "bedside_schwartz": {
+      "name": "2009 CKiD bedside (Schwartz) eGFR",
+      "population": "Children; developed mainly in ages 8-15 with mild-to-moderate CKD",
+      "quantity": "Height-and-creatinine estimate of GFR indexed to 1.73 square meters",
+      "unit": "mL/min/1.73 m^2",
+      "required_inputs": ["height_cm", "serum_creatinine_mg_dl"],
+      "source_urls": ["https://www.niddk.nih.gov/research-funding/research-programs/kidney-clinical-research-epidemiology/laboratory/glomerular-filtration-rate-equations/children-adolescents-young-adults"]
+    },
+    "timed_urine_clearance": {
+      "name": "Timed urine creatinine clearance",
+      "population": "A complete, accurately timed urine collection with concurrent plasma creatinine",
+      "quantity": "Creatinine clearance measured from the collection, without body-surface-area indexing",
+      "unit": "mL/min",
+      "required_inputs": ["urine_creatinine_mg_dl", "urine_volume_ml", "collection_duration_min", "plasma_creatinine_mg_dl"],
+      "source_urls": [
+        "https://www.healthcare.uiowa.edu/path_handbook/handbook/test534.html",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3580664/"
+      ]
+    }
+  },
+  "samples": [
+    {
+      "model_visible": {
+        "episode_id": "example_01",
+        "initial_candidate_ids": ["cockcroft_gault", "ckd_epi_2021", "bedside_schwartz", "timed_urine_clearance"],
+        "case": {
+          "clinical_goal": "Estimate creatinine clearance in mL/min using the available clinical variables.",
+          "case_text": "Fictional case: a 60-year-old man weighs 72 kg. Kidney function is stable, body habitus is not extreme, and serum creatinine is 1.0 mg/dL. A urine collection is not available."
+        }
+      },
+      "answer_environment": {
+        "controlled_replies": []
+      },
+      "reference": {
+        "expected_action_path": ["CALL"],
+        "selected_tool_id": "cockcroft_gault",
+        "parameters": {
+          "age_years": 60,
+          "sex_for_equation": "male",
+          "weight_kg": 72,
+          "serum_creatinine_mg_dl": 1.0
+        },
+        "arithmetic": "(140 - 60) * 72 / (72 * 1.0)",
+        "expected_output": {"value": 80, "unit": "mL/min"},
+        "rationale": "Cockcroft-Gault matches estimated creatinine clearance in this adult. Indexed adult eGFR is a different quantity; the pediatric equation has a different population; timed urine clearance requires collection measurements."
+      }
+    },
+    {
+      "model_visible": {
+        "episode_id": "example_02",
+        "initial_candidate_ids": ["cockcroft_gault", "ckd_epi_2021", "bedside_schwartz", "timed_urine_clearance"],
+        "case": {
+          "clinical_goal": "Obtain a quick height-and-creatinine estimate of pediatric eGFR indexed to 1.73 square meters.",
+          "case_text": "Fictional case: a 12-year-old child with stable CKD has IDMS-standardized serum creatinine of 1.0 mg/dL. Height is absent from the initial record."
+        }
+      },
+      "answer_environment": {
+        "controlled_replies": [
+          {
+            "requested_concept": "height_cm",
+            "availability": "available_after_ask",
+            "reply": "The child's measured height is 150 cm.",
+            "value": 150,
+            "unit": "cm"
+          }
+        ]
+      },
+      "reference": {
+        "expected_action_path": ["ASK", "CALL"],
+        "requested_concept": "height_cm",
+        "selected_tool_id": "bedside_schwartz",
+        "parameters_after_reply": {"height_cm": 150, "serum_creatinine_mg_dl": 1.0},
+        "arithmetic": "0.413 * 150 / 1.0",
+        "expected_output": {"value": 61.95, "unit": "mL/min/1.73 m^2"},
+        "rationale": "The child and requested indexed eGFR match the pediatric bedside equation. Height must be obtained before calling. Adult equations do not match the population; collection-based clearance answers a different question."
+      }
+    },
+    {
+      "model_visible": {
+        "episode_id": "example_03",
+        "initial_candidate_ids": ["cockcroft_gault", "ckd_epi_2021", "bedside_schwartz", "timed_urine_clearance"],
+        "case": {
+          "clinical_goal": "Calculate creatinine clearance from this actual urine collection, without body-surface-area indexing.",
+          "case_text": "Fictional case: a 60-year-old man weighs 72 kg and has stable kidney function. A complete urine collection has volume 1200 mL and urine creatinine 100 mg/dL. Plasma creatinine measured during the collection is 1.0 mg/dL. The elapsed collection time is not included."
+        }
+      },
+      "answer_environment": {
+        "controlled_replies": [
+          {
+            "requested_concept": "collection_duration_min",
+            "availability": "explicitly_unavailable",
+            "reply": "The collection start and end times were not recorded, and the actual duration cannot be recovered.",
+            "value": null,
+            "unit": "min"
+          }
+        ]
+      },
+      "reference": {
+        "expected_action_path": ["ASK", "ABSTAIN"],
+        "requested_concept": "collection_duration_min",
+        "applicable_tool_id": "timed_urine_clearance",
+        "called_tool_id": null,
+        "abstention_reason": "REQUIRED_INFORMATION_UNAVAILABLE",
+        "required_unavailable_input": "collection_duration_min",
+        "abstention_evidence": "The collection start and end times were not recorded, and the actual duration cannot be recovered.",
+        "unresolved_equation": "urine_creatinine_mg_dl * (urine_volume_ml / collection_duration_min) / plasma_creatinine_mg_dl",
+        "expected_output": null,
+        "rationale": "Urine flow requires the actual duration, which the reply explicitly says is unavailable. Do not assume 24 hours. An adult estimating equation could use the other inputs, but would not calculate clearance from the actual collection."
+      }
+    }
+  ]
+}
