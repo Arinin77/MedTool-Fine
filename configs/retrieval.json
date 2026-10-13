@@ -1,0 +1,18 @@
+{
+  "protocol": "fixed_initial_candidates",
+  "snapshot": "private_data/calculators",
+  "cache_dir": "checkpoints",
+  "query_model": "ncbi/MedCPT-Query-Encoder",
+  "query_revision": "d83a36cc6b8e3a5c5e9d9d6ba156808c1643dcbc",
+  "document_model": "ncbi/MedCPT-Article-Encoder",
+  "document_revision": "d05a736da4bb84ee4057b7f7999485be6ed85465",
+  "max_length": 512,
+  "overlap_tokens": 64,
+  "batch_size": 8,
+  "cpu_threads": 1,
+  "bm25_k1": 1.2,
+  "bm25_b": 0.75,
+  "rrf_constant": 60,
+  "default_top_k": 10,
+  "note": "Data and checkpoint paths are placeholders. Batch size and CPU threads are portable examples, not a record of the original study hardware."
+}

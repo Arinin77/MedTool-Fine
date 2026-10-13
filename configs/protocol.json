@@ -1,0 +1,12 @@
+{
+  "methods": ["Direct", "CoT", "Static", "ReAct", "AgentMD", "CLEAR"],
+  "initial_candidate_count": 10,
+  "retrieve_after_ask": false,
+  "max_model_requests": 5,
+  "budget_includes_selection_and_finish": true,
+  "ask_concept_count": {"min": 1, "max": 8},
+  "clear_terminal_actions": ["CALL", "ABSTAIN"],
+  "temperature": 0,
+  "max_output_tokens": 12000,
+  "benchmark_assets_included": false
+}

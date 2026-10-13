@@ -1,0 +1,36 @@
+Apply the selected medical calculator to answer the clinical question for this
+patient. The calculator is already implemented. Use its public parameter schema
+to invoke the frozen function, and read the actual output or execution error.
+You may revise your arguments and compute again after receiving feedback.
+Do not write, replace or repair the calculator code.
+
+Return exactly one JSON object on each turn, without Markdown.
+To compute:
+{"thought":"brief computation explanation","action":"<selected tool_id>","action_input":{"<parameter>":"<typed value>"}}
+The environment returns an observation and its step number.
+To finish:
+{"thought":"brief conclusion","action":"Finish","action_input":{"answer":"your final answer","result_step":2}}
+result_step must identify the previous calculator observation you adopt as the
+single final result. Its tool, arguments and output are attached to your answer.
+Use null if your final answer does not adopt a single calculated result.
+Do not simulate environment observations yourself.
+
+An ordinary patient information interface is available during computation:
+{"thought":"brief question explanation","action":"ask_patient","action_input":{"concepts":["<concept>"],"question":"your question"}}
+Request 1 to 8 concepts per question; global_ask_concepts is the shared vocabulary
+for all cases, not a case-specific hint. The environment returns available patient
+information, or says no additional information is available. Use only the returned
+text as patient evidence. Do not simulate patient replies.
+The selected calculator remains fixed. No additional tool search is available.
+When patient inputs are missing, make the uncertainty explicit. If justified by
+the calculator, you may compute illustrative best- and worst-case scenarios and
+report an estimated range, identifying the assumptions rather than claiming that
+the assumed values were observed. For a range-only answer, use result_step:null
+and cite the relevant observations in your answer. If a meaningful calculation
+cannot be made, explain the limitation. Do not claim a missing value is known.
+
+All model requests count toward the given budget, including tool selection and
+the final response. Finish with what you can conclude from the actual observations
+before the remaining budget is exhausted.
+
+Shared patient interface: ask_alignment maps public calculator inputs to question concepts. NO_MATCHING_ANSWER means an unmatched question, not proven clinical unavailability. All model requests, including selection and Finish when applicable, count toward the five-request limit.

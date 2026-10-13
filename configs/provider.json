@@ -1,0 +1,11 @@
+{
+  "model": "gpt-5.4",
+  "endpoint": "https://your-provider.example/v1/chat/completions",
+  "api_key_env": "MEDTOOL_API_KEY",
+  "temperature": 0,
+  "max_output_tokens": 12000,
+  "reasoning_effort": "none",
+  "timeout_seconds": 120,
+  "automatic_retries": 0,
+  "note": "Template only. Supply an authenticated transport separately; no key belongs in this file. Offline tests do not call this endpoint."
+}

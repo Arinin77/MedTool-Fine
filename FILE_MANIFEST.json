@@ -1,0 +1,186 @@
+{
+  "format": 1,
+  "scope": "All release files except this manifest.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 103,
+      "sha256": "a64c4d554e13a8c09a35f40c5afb4f4840b956110b63286e12524338feda4562"
+    },
+    {
+      "path": "NOTICE.md",
+      "bytes": 1819,
+      "sha256": "287c4a1220cb0629dfcd9ff41e30753d270fb6dc5ed68ef55eb72b1d8eeb6a64"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4152,
+      "sha256": "12c4405e57cc5aecf37f90e0df1ab620a7210b7f1f620ab2310428d86ee59fa5"
+    },
+    {
+      "path": "configs/protocol.json",
+      "bytes": 395,
+      "sha256": "38da94abfded37dc9899ad286d75acba525403d563e18429ef6d87a5d46566ae"
+    },
+    {
+      "path": "configs/provider.json",
+      "bytes": 404,
+      "sha256": "83eca148073d035189b6e5518773cd1757668c664c01566dc612431e19441e04"
+    },
+    {
+      "path": "configs/retrieval.json",
+      "bytes": 662,
+      "sha256": "2ea532e20436b014ad4926b97967ccbb0f0ea3e4ff872068adc687c78ce301f7"
+    },
+    {
+      "path": "methods/AgentMD/computation_prompt.txt",
+      "bytes": 2625,
+      "sha256": "5998226393c396d6e218a0176b4f8b72b925b0580c6bf6beff3c2c642f145560"
+    },
+    {
+      "path": "methods/AgentMD/selection_prompt.txt",
+      "bytes": 636,
+      "sha256": "0fcf2cee4a4e75484e33d654d1820960c4f9ddb45adb332726699399d15e9837"
+    },
+    {
+      "path": "methods/CLEAR/prompt.txt",
+      "bytes": 10227,
+      "sha256": "479a74e3e3cb89f7641ae8b77bea208eb03b697d9ea3775b8f9f12dfad0f7e17"
+    },
+    {
+      "path": "methods/CoT/prompt.txt",
+      "bytes": 674,
+      "sha256": "9f45a1ef43f2cc0c06877d61f0624d6d5f982907d559d532e763ef064b0563d6"
+    },
+    {
+      "path": "methods/Direct/prompt.txt",
+      "bytes": 594,
+      "sha256": "5fa8fc9b731a32edcd62089aa3c505ddcc0adead0433f358f97a28cdea9d311a"
+    },
+    {
+      "path": "methods/ReAct/prompt.txt",
+      "bytes": 2792,
+      "sha256": "3714a85feca4a61294733ce4764873e5ac8ba7ab578a3572c98b9b07f441d0c2"
+    },
+    {
+      "path": "methods/Static/prompt.txt",
+      "bytes": 622,
+      "sha256": "99c28a02c2ca804901a4b38992dc62b3b01057ec7cbd29fe75438131c20de273"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 318,
+      "sha256": "e73087e1117bc0f47f5b7ea21801966c0ced71ee3d75d60d5639f878c304774e"
+    },
+    {
+      "path": "requirements-retrieval.txt",
+      "bytes": 47,
+      "sha256": "d41033b8ed23fdaf5ed7a6076f6c0184fda6d9a54e3f195e4f6fc37a030e1d35"
+    },
+    {
+      "path": "scripts/run_offline_demo.py",
+      "bytes": 10681,
+      "sha256": "16c8fc77ed1cc97f9084b33ecbb1041b37f1913a71b20f2ca0110f548e17918e"
+    },
+    {
+      "path": "src/medtool_fine/__init__.py",
+      "bytes": 63,
+      "sha256": "552245a98795b2d361f06ff6c011026231a4779d63691eaa99bc7254a05b790c"
+    },
+    {
+      "path": "src/medtool_fine/agentmd.py",
+      "bytes": 5900,
+      "sha256": "16505a4c1987b1435e8b948740e91f9e412e26cb98a51fb2dd9894f5874059b4"
+    },
+    {
+      "path": "src/medtool_fine/answer_scoring.py",
+      "bytes": 21082,
+      "sha256": "02099c2ac282cd2ed82adcbe4e0de595f0725d70510183c53cc5e79f8a05ba25"
+    },
+    {
+      "path": "src/medtool_fine/baselines.py",
+      "bytes": 5306,
+      "sha256": "1ef29356dda5c65407e87bd92c9a4f7baf6699fcf71283e7eaf1a7bfd5b8f855"
+    },
+    {
+      "path": "src/medtool_fine/clear.py",
+      "bytes": 12486,
+      "sha256": "f5a2ad64caa43f53e6c0e6f8030a7c20e76690915775886640bd660d8d7da113"
+    },
+    {
+      "path": "src/medtool_fine/clear_scoring.py",
+      "bytes": 2974,
+      "sha256": "6e3b5077494ef5a45364dc7b44e7b29ad5648fdc92b939534f6eaa31b2c86dd9"
+    },
+    {
+      "path": "src/medtool_fine/evaluation_core.py",
+      "bytes": 16166,
+      "sha256": "8c7d95a210c5b8aef643a3e469519da051bcbf936006c6aeb5263b427d5d9e53"
+    },
+    {
+      "path": "src/medtool_fine/execution.py",
+      "bytes": 10877,
+      "sha256": "697c7dd79ae1bb5d3b24dffb852b3cd964cd3d6f1da1f06c3e645f4ddb215eb0"
+    },
+    {
+      "path": "src/medtool_fine/interaction.py",
+      "bytes": 3768,
+      "sha256": "6449f72697111bcd88faa1c9152ea1d63535d69a6da1a872adaebb7470a4cced"
+    },
+    {
+      "path": "src/medtool_fine/io.py",
+      "bytes": 1503,
+      "sha256": "de2e5c00bec43e0c5a0f3b7f096f5a75e3c897e02f3f0ffb7d649781073adebf"
+    },
+    {
+      "path": "src/medtool_fine/precision_calc.py",
+      "bytes": 6793,
+      "sha256": "05d5ff68fec20be1c9c0abd8a2bff6cbdc2886bd4c5068225343513be6fec863"
+    },
+    {
+      "path": "src/medtool_fine/precision_clinical.py",
+      "bytes": 6801,
+      "sha256": "5393f4cc53b0f927119eff72072cee8a0ffe88aa0389ab8537e50e051bcc13c0"
+    },
+    {
+      "path": "src/medtool_fine/provider.py",
+      "bytes": 2732,
+      "sha256": "772cabf78e81835a86b03a0d27b44046f44c1960f4012ec3e6510236c089c67f"
+    },
+    {
+      "path": "src/medtool_fine/react.py",
+      "bytes": 4477,
+      "sha256": "1722627581be6e4b95684c9dc0d31548fe3e5c303b7e2a334c8d51b161d253b8"
+    },
+    {
+      "path": "src/medtool_fine/react_io.py",
+      "bytes": 4168,
+      "sha256": "6fbd0cfb0abb9ed5b15d2f17ea4934770320c138c4d96ff97d6cb079958f3e62"
+    },
+    {
+      "path": "src/medtool_fine/retrieval.py",
+      "bytes": 9050,
+      "sha256": "f909bd19038085025d21748261e0401f47b3d2fa1399e1891af4f353b781549e"
+    },
+    {
+      "path": "src/medtool_fine/runner.py",
+      "bytes": 3514,
+      "sha256": "16bad14b34a916cd31cc430a76e454a9a09206eb1e0f3a54218177533d5d5242"
+    },
+    {
+      "path": "src/medtool_fine/runtime.py",
+      "bytes": 4565,
+      "sha256": "e10c5a9e30bdf04d69900b3857a5a8f3a9bf55cbe97003526d6ef7a12ec61e0c"
+    },
+    {
+      "path": "src/medtool_fine/scoring.py",
+      "bytes": 6678,
+      "sha256": "3673315cf8d6b76ed9a9f31fd38d26ad812faca026c116782a14c1be90989dc5"
+    },
+    {
+      "path": "tests/test_offline_runtime.py",
+      "bytes": 5546,
+      "sha256": "af5068f719634a3499e034c1cb458a0ba125db779257319078d468100cf64498"
+    }
+  ]
+}

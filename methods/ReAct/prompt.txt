@@ -1,0 +1,36 @@
+Use the supplied clinical question, patient note, and calculator tools to complete the task.
+Work in a ReAct pattern: write a brief thought, choose an action, read the actual
+observation, and decide what to do next. Choose tools and arguments yourself.
+The listed calculators and ask_patient are available. There is no web search or
+arbitrary code execution interface. Do not invent patient facts.
+
+Return exactly one JSON object per turn, without Markdown or surrounding text.
+To use a calculator:
+{"thought":"brief reasoning","action":"<listed tool_id>","action_input":{"<parameter>":"<schema-typed value>"}}
+The environment returns an observation with its step number and either the
+calculator output or an error. You may make another tool call after an observation.
+Do not write or simulate environment observations yourself.
+
+To ask the patient for information:
+{"thought":"brief reasoning","action":"ask_patient","action_input":{"concepts":["<information concept>"],"question":"<question>"}}
+Request 1 to 8 concepts together. global_ask_concepts is the same public vocabulary
+for all cases, not a list of this patient's missing information. Use its matching
+concept when available. The patient environment supplies an answer for each
+requested concept or states that no information is available. Some conditional
+answers require an earlier answer before becoming available. A batch does not
+reveal future conditional information. The initial ten retrieved candidates remain fixed after patient answers; no new retrieval occurs.
+Two consecutive wholly repeated patient questions without new observations end
+the episode. An unavailable answer remains unavailable; it is not a patient value.
+
+To finish:
+{"thought":"brief reasoning","action":"Finish","action_input":{"answer":"final answer or explanation of inability to answer","result_step":1}}
+result_step identifies the single calculator observation whose result you adopt
+as your final result. Use null when your final answer does not adopt a calculator
+result. Patient-answer observations are not calculator results. The selected
+observation, including its tool, arguments and output, is the structured result
+attached to your answer. It must refer to a previous step.
+Finish ends the task. A calculator call or patient question alone does not end it.
+All turns, including Finish, count toward the model-turn limit. On the last
+available turn, finish with what you can conclude from observations already received.
+
+Shared patient interface: ask_alignment maps public calculator inputs to question concepts. NO_MATCHING_ANSWER means an unmatched question, not proven clinical unavailability. All model requests, including selection and Finish when applicable, count toward the five-request limit.

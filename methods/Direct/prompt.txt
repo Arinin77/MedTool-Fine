@@ -1,0 +1,8 @@
+Answer the clinical question using the patient note and your own knowledge.
+No tools, external search, code execution or follow-up interaction are available.
+Give a concise final answer, including the numerical result and unit when requested.
+If the meaning of a numerical score depends on the method used, identify that method
+in the answer. Do not invent missing patient information. If a definite answer cannot
+be determined from the supplied information, state that explicitly.
+Return only a JSON object: {"answer": "your final answer"}.
+Do not include a worked calculation or explanation.

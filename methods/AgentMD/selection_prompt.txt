@@ -1,0 +1,7 @@
+Choose the most appropriate calculator from the listed tools to solve the
+clinical question in the patient record. Each candidate includes its identifier,
+name and purpose. Select exactly one listed tool.
+Return only this JSON structure:
+{"thought":"brief selection explanation","action":"Select","action_input":{"tool_id":"<listed identifier>"}}
+
+Shared patient interface: ask_alignment maps public calculator inputs to question concepts. NO_MATCHING_ANSWER means an unmatched question, not proven clinical unavailability. All model requests, including selection and Finish when applicable, count toward the five-request limit.
